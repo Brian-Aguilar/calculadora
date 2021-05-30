@@ -1,0 +1,231 @@
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --black: 50, 54, 60;
+  --white: 223, 229, 236;
+  --green: 0, 168, 177;
+  --orange: 238, 129, 70;
+  --shadow: rgb(203, 210, 222);
+  --shadow-2: rgb(42, 44, 48);
+}
+
+body,
+html {
+  margin: 0;
+  width: 100vw;
+  height: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-size: 16px;
+  font-family: "KoHo", sans-serif;
+  font-weight: 600;
+  --primary-color: rgb(var(--orange));
+  --second-color: rgb(var(--green));
+}
+ul {
+  margin: 0;
+  list-style: none;
+}
+svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+.light {
+  --font-color: rgb(var(--black));
+  --background: rgb(var(--white));
+  --color-b: var(--black);
+  --color-shadow: var(--shadow);
+  --color-shadow2: white;
+}
+.dark {
+  --font-color: rgb(var(--white));
+  --background: rgb(var(--black));
+  --color-b: var(--white);
+  --color-shadow: var(--shadow-2);
+  --color-shadow2: rgb(66, 66, 66);
+}
+main.main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background);
+}
+
+.calculator {
+  color: var(--font-color);
+  background-color: rgb(var(--background));
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  position: relative;
+}
+.display {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: right;
+  padding: 1em;
+}
+.d-top,
+.d-bottom {
+  display: flex;
+}
+.d-top {
+  justify-content: space-between;
+}
+.d-bottom {
+  flex-direction: column;
+}
+.numbers,
+.hn {
+  user-select: none;
+}
+.numbers {
+  font-size: 4rem;
+}
+.hn {
+  font-size: 2rem;
+}
+#text-delete,
+#mode,
+#history,
+#close-history,
+#delete-history {
+  cursor: pointer;
+}
+
+.numerics {
+  flex: 3;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 1em;
+}
+.numerics li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background);
+  border-radius: 10px;
+  box-shadow: 10px 10px 30px 0 var(--color-shadow),
+    -1px -1px 20px 0 var(--color-shadow2);
+  font-size: 1.25rem;
+  user-select: none;
+  cursor: pointer;
+}
+.numerics li:hover {
+  box-shadow: 18px 18px 30px 0 var(--color-shadow),
+    -2px -2px 20px 0 var(--color-shadow2);
+}
+.cero {
+  grid-column: 1/3;
+}
+.extra {
+  color: var(--second-color);
+}
+.operation {
+  color: var(--primary-color);
+}
+
+.history-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--background);
+  padding: 2em 1em;
+  transform: translate(100%);
+  transition: 0.2s all ease-out;
+  overflow-y: hidden;
+}
+.history-content.active {
+  transform: translate(0%);
+}
+.history-content h2 {
+  font-size: 2rem;
+  margin: 0;
+}
+.history-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.history-title .left {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.history-c {
+  overflow-x: hidden;
+  overflow-y: auto;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0.5em 0.5em 0 0;
+  scrollbar-color: rgba(var(--color-b), 0.3) transparent;
+  scrollbar-width: thin;
+}
+.history-c::-webkit-scrollbar {
+  width: 0.25rem;
+}
+.history-c::-webkit-scrollbar-thumb {
+  background-color: rgba(var(--color-b), 0.3);
+  border-radius: 20px;
+  border: transparent;
+}
+.history-c::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.history-c li {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 1.25rem;
+  margin: 10px 0;
+}
+.history-c li.center {
+  width: 100%;
+  align-items: center;
+  font-size: 2rem;
+}
+.history-c li:last-child {
+  padding-bottom: 1em;
+}
+.history-c li span:nth-child(2) {
+  font-size: 1.5rem;
+  color: rgb(var(--green));
+}
+
+@media screen and (min-width: 376px) {
+  .calculator {
+    max-width: 375px;
+    max-height: 812px;
+    overflow: hidden;
+    border-radius: 20px;
+    box-shadow: 10px 10px 30px 0 var(--color-shadow),
+      -1px -1px 10px 0 var(--color-shadow2);
+  }
+}
+
+@media screen and (min-height: 569px) {
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .numerics li {
+    font-size: 1.5rem;
+  }
+}
